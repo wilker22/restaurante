@@ -12,6 +12,9 @@
         </div>
       </div>
       <div class="col-md-8">
+        <i class="fas fa-align-justify"></i>Category
+        <a href="/management/category/create " class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i> Create Category</a>
+        <hr>
       </div>
     </div>
   </div>
