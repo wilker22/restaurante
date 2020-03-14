@@ -11,12 +11,13 @@
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
             @foreach($categories as $category)
-              <a class="nav-item nav-link" data-toggle="tab">
+              <a class="nav-item nav-link" data-id="{{$category->id}}" data-toggle="tab">
                 {{$category->name}}
               </a>
             @endforeach
           </div>
         </nav>
+        <div id="list-menu" class="row mt-2"></div>
       </div>
     </div>
 </div>
@@ -39,6 +40,17 @@ $(document).ready(function(){
       }
       
   });
+
+  // load menus by category
+
+  $(".nav-link").click(function(){
+    $.get("/cashier/getMenuByCategory/"+$(this).data("id"),function(data){
+      $("#list-menu").hide();
+      $("#list-menu").html(data);
+      $("#list-menu").fadeIn('fast');
+    });
+  })
+
 });
 </script>
 @endsection
