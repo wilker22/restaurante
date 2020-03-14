@@ -7,6 +7,7 @@
       <div class="col-md-5">
         <button class="btn btn-primary btn-block" id="btn-show-tables">View All Tables</button>
         <div id="selected-table"></div>
+        <div id="order-detail"></div>
       </div>
       <div class="col-md-7">
         <nav>
@@ -51,12 +52,35 @@ $(document).ready(function(){
       $("#list-menu").fadeIn('fast');
     });
   })
-
+  var SELECTED_TABLE_ID = "";
+  var SELECTED_TABLE_NAME = "";
   // detect button table onclick to show table data
   $("#table-detail").on("click", ".btn-table", function(){
-    var SELECTED_TABLE_ID = $(this).data("id");
-    var SELECTED_TABLE_NAME = $(this).data("name");
+    SELECTED_TABLE_ID = $(this).data("id");
+    SELECTED_TABLE_NAME = $(this).data("name");
     $("#selected-table").html('<br><h3>Table: '+SELECTED_TABLE_NAME+'</h3><hr>');
+  });
+
+  $("#list-menu").on("click", ".btn-menu", function(){
+    if(SELECTED_TABLE_ID == ""){
+      alert("You need to select a table for the customer first");
+    }else{
+      var menu_id = $(this).data("id");
+      $.ajax({
+        type: "POST",
+        data: {
+          "_token" : $('meta[name="csrf-token"]').attr('content'),
+          "menu_id": menu_id,
+          "table_id": SELECTED_TABLE_ID,
+          "table_name": SELECTED_TABLE_NAME,
+          "quantity" : 1
+        },
+        url: "/cashier/orderFood",
+        success: function(data){
+          $("#order-detail").html(data);
+        }
+      });
+    }
   });
 
 
