@@ -23,6 +23,36 @@
       </div>
     </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Payment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3 class="totalAmount"></h3>
+        <div class="input-group mb-3">
+           <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+           </div> 
+           <input type="number" id="recieved-amount" class="form-control">
+        </div>
+        <h3 class="changeAmount"></h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btn-save-payment" disabled>Save Payment</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 $(document).ready(function(){
   // make table-detail hidden by default
@@ -119,7 +149,30 @@ $(document).ready(function(){
 
   });
 
+  // when a user click on the payment button
+  $("#order-detail").on("click", ".btn-payment", function(){
+    var totalAmout = $(this).attr('data-totalAmount');
+    $(".totalAmount").html("Total Amount " + totalAmout);
+    $("#recieved-amount").val('');
+    $(".changeAmount").html('');
+  });
 
+  // calcuate change
+  $("#recieved-amount").keyup(function(){
+    var totalAmount = $(".btn-payment").attr('data-totalAmount');
+    var recievedAmount = $(this).val();
+    var changeAmount = recievedAmount - totalAmount;
+    $(".changeAmount").html("Total Change: $" + changeAmount);
+
+    //check if cashier enter the right amount, then enable or disable save payment button
+
+    if(changeAmount >= 0){
+      $('.btn-save-payment').prop('disabled', false);
+    }else{
+      $('.btn-save-payment').prop('disabled', true);
+    }
+
+  });
 
 });
 </script>
