@@ -47,7 +47,7 @@
         <div class="form-group">
           <label for="payment">Payment Type</label>
           <select class="form-control" id="payment-type">
-            <option value="cash">Cash<option>
+            <option value="cash">Cash</option>
             <option value="credit card">Credit Card</option>
           </select>
         </div>
@@ -189,7 +189,20 @@ $(document).ready(function(){
     var recievedAmount = $("#recieved-amount").val();
     var paymentType =$("#payment-type").val();
     var saleId = SALE_ID;
-    alert(saleId);
+    $.ajax({
+      type: "POST",
+      data: {
+        "_token" : $('meta[name="csrf-token"]').attr('content'),
+        "saleID" : saleId,
+        "recievedAmount" : recievedAmount,
+        "paymentType" : paymentType
+
+      },
+      url: "/cashier/savePayment",
+      success: function(data){
+        window.location.href= data;
+      }
+    });
   });
 
 });
