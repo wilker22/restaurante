@@ -16,7 +16,7 @@
               </ul>
           </div>
         @endif
-        <form action="/management/category" method="POST">
+        <form action="{{url('management/category')}}" method="POST">
           @csrf
           <div class="form-group">
             <label for="categoryName">Category Name</label>

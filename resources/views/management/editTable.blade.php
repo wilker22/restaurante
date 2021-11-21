@@ -16,7 +16,7 @@
               </ul>
           </div>
         @endif
-        <form action="/management/table/{{$table->id}}" method="POST">
+        <form action="{{url('management/table')}}/{{$table->id}}" method="POST">
           @csrf
           @method('PUT')
           <div class="form-group">

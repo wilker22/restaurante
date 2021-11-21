@@ -6,7 +6,7 @@
       @include('management.inc.sidebar')
       <div class="col-md-8">
         <i class="fas fa-hamburger"></i>Menu
-        <a href="/management/menu/create" class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i> Create Menu</a>
+        <a href="{{url('management/menu/create')}}" class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i> Create Menu</a>
         <hr>
         @if(Session()->has('status'))
           <div class="alert alert-success">
@@ -38,9 +38,9 @@
                 </td>
                 <td>{{$menu->description}}</td>
                 <td>{{$menu->category->name}}</td>
-                <td><a href="/management/menu/{{$menu->id}}/edit" class="btn btn-warning">Edit</a></td>
+                <td><a href="{{url('management/menu')}}/{{$menu->id}}/edit" class="btn btn-warning">Edit</a></td>
                 <td>
-                  <form action="/management/menu/{{$menu->id}}" method="post">
+                  <form action="{{url('management/menu')}}/{{$menu->id}}" method="post">
                     @csrf 
                     @method('DELETE')
                     <input type="submit" value="Delete" class="btn btn-danger">

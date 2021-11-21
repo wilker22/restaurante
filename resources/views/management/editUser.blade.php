@@ -16,7 +16,7 @@
               </ul>
           </div>
         @endif
-        <form action="/management/user/{{$user->id}}" method="POST">
+        <form action="{{url('management/user')}}/{{$user->id}}" method="POST">
           @csrf
           @method('PUT')
           <div class="form-group">

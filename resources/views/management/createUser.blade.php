@@ -16,7 +16,7 @@
               </ul>
           </div>
         @endif
-        <form action="/management/user" method="POST">
+        <form action="{{url('management/user')}}" method="POST">
           @csrf
           <div class="form-group">
             <label for="name">Name</label>

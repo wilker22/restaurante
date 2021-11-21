@@ -23,7 +23,7 @@
               </ul>
           </div>
         @endif
-        <form action="/management/category/{{$category->id}}" method="POST">
+        <form action="{{url('management/category')}}/{{$category->id}}" method="POST">
           @csrf
           @method('PUT')
           <div class="form-group">

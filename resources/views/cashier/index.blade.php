@@ -62,14 +62,18 @@
 </div>
 
 <script>
+   
+
 $(document).ready(function(){
+  
+
   // make table-detail hidden by default
   $("#table-detail").hide();
 
   //show all tables when a client click on the button
   $("#btn-show-tables").click(function(){
       if($("#table-detail").is(":hidden")){
-        $.get("/cashier/getTable", function(data){
+        $.get("{{url('cashier/getTable')}}", function(data){
         $("#table-detail").html(data);
         $("#table-detail").slideDown('fast');
         $("#btn-show-tables").html('Hide Tables').removeClass('btn-primary').addClass('btn-danger');
@@ -84,7 +88,7 @@ $(document).ready(function(){
   // load menus by category
 
   $(".nav-link").click(function(){
-    $.get("/cashier/getMenuByCategory/"+$(this).data("id"),function(data){
+    $.get("{{url('cashier/getMenuByCategory')}}"+"/"+$(this).data("id"),function(data){
       $("#list-menu").hide();
       $("#list-menu").html(data);
       $("#list-menu").fadeIn('fast');
@@ -98,7 +102,7 @@ $(document).ready(function(){
     SELECTED_TABLE_ID = $(this).data("id");
     SELECTED_TABLE_NAME = $(this).data("name");
     $("#selected-table").html('<br><h3>Table: '+SELECTED_TABLE_NAME+'</h3><hr>');
-    $.get("/cashier/getSaleDetailsByTable/"+SELECTED_TABLE_ID, function(data){
+    $.get("{{url('cashier/getSaleDetailsByTable')}}"+"/"+SELECTED_TABLE_ID, function(data){
       $("#order-detail").html(data);
     });
   });
@@ -108,6 +112,7 @@ $(document).ready(function(){
       alert("You need to select a table for the customer first");
     }else{
       var menu_id = $(this).data("id");
+      
       $.ajax({
         type: "POST",
         data: {
@@ -117,7 +122,7 @@ $(document).ready(function(){
           "table_name": SELECTED_TABLE_NAME,
           "quantity" : 1
         },
-        url: "/cashier/orderFood",
+        url: "{{url('cashier/orderFood')}}",
         success: function(data){
           $("#order-detail").html(data);
         }
@@ -133,7 +138,7 @@ $(document).ready(function(){
         "_token" : $('meta[name="csrf-token"]').attr('content'),
         "sale_id" : SaleID
       },
-      url: "/cashier/confirmOrderStatus",
+      url: "{{url('cashier/confirmOrderStatus')}}",
       success: function(data){
         $("#order-detail").html(data);
       }
@@ -150,7 +155,7 @@ $(document).ready(function(){
         "_token" : $('meta[name="csrf-token"]').attr('content'),
         "saleDetail_id": saleDetailID
       },
-      url: "/cashier/deleteSaleDetail",
+      url: "{{url('cashier/deleteSaleDetail')}}",
       success: function(data){
         $("#order-detail").html(data);
       }
@@ -198,7 +203,7 @@ $(document).ready(function(){
         "paymentType" : paymentType
 
       },
-      url: "/cashier/savePayment",
+      url: "{{url('cashier/savePayment')}}",
       success: function(data){
         window.location.href= data;
       }

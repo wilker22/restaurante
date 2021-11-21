@@ -66,7 +66,7 @@
       <p>Thank You!!!</p>
     </div>
     <div id="buttons">
-      <a href="/cashier">
+      <a href="{{url('cashier')}}">
         <button class="btn btn-back">
           Back to Cashier
         </button>

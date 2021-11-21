@@ -17,21 +17,21 @@
                     <div class="row text-center">
                         @if(Auth::user()->checkAdmin())
                         <div class="col-sm-4">
-                            <a href="/management">
+                            <a href="{{url('management')}}">
                                 <h4>Managment</h4>
                                 <img width="50px" src="{{asset('images/management.svg')}}"/>
                             </a>
                         </div>
                         @endif
                         <div class="col-sm-4">
-                            <a href="/cashier">
+                            <a href="{{url('cashier')}}">
                                 <h4>Cashier</h4>
                                 <img width="50px" src="{{asset('images/cashier.svg')}}"/>
                             </a>
                         </div>
                         @if(Auth::user()->checkAdmin())
                         <div class="col-sm-4">
-                            <a href="/report">
+                            <a href="{{url('report')}}">
                                 <h4>Report</h4>
                                 <img width="50px" src="{{asset('images/report.svg')}}"/>
                             </a>

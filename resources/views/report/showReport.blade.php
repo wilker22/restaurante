@@ -48,7 +48,7 @@
                   <tr class="bg-primary text-light">
                     <td>{{$countSale++}}</td>
                     <td>{{$sale->id}}</td>
-                    <td>{{date("m/d/Y H:i:s", strtotime($sale->updated_at))}}</td>
+                    <td>{{date("d/m/Y H:i:s", strtotime($sale->updated_at))}}</td>
                     <td>{{$sale->table_name}}</td>
                     <td>{{$sale->user_name}}</td>
                     <td>{{$sale->total_price}}</td>
@@ -77,7 +77,7 @@
    
             {{$sales->appends($_GET)->links()}}
 
-            <form action="/report/show/export" method="get">
+            <form action="{{url('report/show/export')}}" method="get">
               <input type="hidden" name="dateStart" value="{{$dateStart}}" >
               <input type="hidden" name="dateEnd" value="{{$dateEnd}}" >
               <input type="submit" class="btn btn-warning" value="Export to Excel" >

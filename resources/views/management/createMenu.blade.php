@@ -16,7 +16,7 @@
               </ul>
           </div>
         @endif
-        <form action="/management/menu" method="POST" enctype="multipart/form-data">
+        <form action="{{url('management/menu')}}" method="POST" enctype="multipart/form-data">
           @csrf
           <div class="form-group">
             <label for="menuName">Menu Name</label>

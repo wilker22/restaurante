@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="row">
-      <form action="/report/show" method="GET">
+      <form action="{{url('report/show')}}" method="GET">
         <div class="col-md-12">
         <label>Choose Date For Report</label>
           <div class="form-group">

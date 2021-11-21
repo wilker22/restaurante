@@ -6,7 +6,7 @@
       @include('management.inc.sidebar')
       <div class="col-md-8">
         <i class="fas fa-users"></i> User
-        <a href="/management/user/create" class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i> Create User</a>
+        <a href="{{url('management/user/create')}}" class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i> Create User</a>
         <hr>
         @if(Session()->has('status'))
           <div class="alert alert-success">
@@ -32,9 +32,9 @@
                 <td>{{$user->name}}</td>
                 <td>{{$user->role}}</td>
                 <td>{{$user->email}}</td>
-                <td><a href="/management/user/{{$user->id}}/edit" class="btn btn-warning">Edit</a></td>
+                <td><a href="{{url('management/user')}}/{{$user->id}}/edit" class="btn btn-warning">Edit</a></td>
                 <td>
-                  <form action="/management/user/{{$user->id}}" method="post">
+                  <form action="{{url('management/user')}}{{$user->id}}" method="post">
                     @csrf 
                     @method('DELETE')
                     <input type="submit" value="Delete" class="btn btn-danger">
